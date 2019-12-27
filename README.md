@@ -2,8 +2,9 @@
 
 Sample app for integrating Cybavo Authenticator SDK, https://www.cybavo.com/
 
-![image](https://github.com/CYBAVO/android_wallet_sdk_sample/raw/master/image/sc_wallet_list.png)
-![image](https://github.com/CYBAVO/android_wallet_sdk_sample/raw/master/image/sc_wallet_detail.png)
+![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/README/sc_security.png)
+![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/image/sc_main.png)
+![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/image/sc_pin.png)
 
 ## Features
 
@@ -15,28 +16,31 @@ Sample app for integrating Cybavo Authenticator SDK, https://www.cybavo.com/
 ## Setup
 
 1. Edit `android/local.properties` to config Maven repository URL / credentials provided by CYBAVO
-   
+
    - **Android**
+
    ```
    cybavo.maven.url=$MAVEN_REPO_URL
    cybavo.maven.username=$MAVEN_REPO_USRENAME
    cybavo.maven.password=$MAVEN_REPO_PASSWORD
    ```
+
    - **iOS**
+
    1. Edit `ios/Podfile`, Replace `'https://bitbucket.org/cybavo/Specs.git'` with `'https://bitbucket.org/cybavo/specs_501.git'` if using Xcode 10.2.1, Xcode 10.3, with `'https://bitbucket.org/cybavo/specs_512.git'` if using >= Xcode 11.2
    2. Run `pod install` in `ios/`
-   
+
 2. Edit `BuildConfig.json` ➜ `SERVICE_ENDPOINT` to point to your Wallet Service endpoont
 3. Register your app on CYBAVO AUTH MANAGEMENT system web > Service > App Management, input `package name` and `Signature keystore SHA1 fingerprint`, follow the instruction to retrieve an `API Code`.
 4. Edit `BuildConfig.json` ➜ `SERVICE_API_CODE` to fill in yout `API Code`
 5. To enable push notification feature
-   
+
    - **Android**
-   
+
    Setup project to integrate [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging) (FCM) service, download `google-services.json` to `android/app` folder. Refer to [official document](https://firebase.google.com/docs/cloud-messaging/android/client) for details
-   
+
    - **iOS**
-   
+
    Setup project to register APNS. Refer to [official document](https://developer.apple.com/documentation/usernotifications/registering_your_app_with_apns) for details
 
 ## CYBAVO
