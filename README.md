@@ -3,8 +3,8 @@
 Sample app for integrating Cybavo Authenticator SDK, https://www.cybavo.com/
 
 ![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/README/sc_security.png)
-![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/image/sc_main.png)
-![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/image/sc_pin.png)
+![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/README/sc_main.png)
+![image](https://github.com/CYBAVO/auth-sdk_react-native_example/raw/master/README/sc_pin.png)
 
 ## Features
 
