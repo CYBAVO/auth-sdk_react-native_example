@@ -34,12 +34,12 @@ const OTPActionScreen: () => React$Node = () => {
     try {
       const authenticator = await Service.get();
       await authenticator.approve(action.token, action.deviceId, message);
-      dispatch(fetchActions());
-      goBack();
     } catch (error) {
       console.warn(error);
       Toast.show({ text: error.message });
     }
+    dispatch(fetchActions());
+    goBack();
     setLoading(false);
   };
 
@@ -48,13 +48,13 @@ const OTPActionScreen: () => React$Node = () => {
     try {
       const authenticator = await Service.get();
       await authenticator.reject(action.token, action.deviceId, message);
-      dispatch(fetchActions());
-      goBack();
       setApprove(null);
     } catch (error) {
       console.warn(error);
       Toast.show({ text: error.message });
     }
+    dispatch(fetchActions());
+    goBack();
     setLoading(false);
   };
 

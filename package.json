@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@cybavo/react-native-auth-service": "^1.0.4",
+    "@cybavo/react-native-auth-service": "^1.0.56",
     "@react-native-community/async-storage": "^1.7.0",
     "@react-native-community/push-notification-ios": "^1.0.3",
     "@react-native-firebase/app": "^6.2.0",

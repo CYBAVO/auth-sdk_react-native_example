@@ -1,6 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
-import { Text, Body, ListItem, Left, Right, Icon, Button } from 'native-base';
+import {
+  Text,
+  Body,
+  ListItem,
+  Left,
+  Right,
+  Icon,
+  Button,
+  Thumbnail,
+} from 'native-base';
 import moment from 'moment';
 import { textColorDisabled } from '../Constants';
 
@@ -9,19 +18,35 @@ const PairingList: () => React$Node = ({
   onUnpair,
 }) => {
   const _renderItem = ({ item }) => (
-    <ListItem avatar>
+    <ListItem avatar style={{ opacity: item.isValid ? 1 : 0.5 }}>
       <Left>
-        <Icon
-          style={styles.icon}
-          type="MaterialCommunityIcons"
-          name="link-variant"
-        />
+        {!!item.iconUrl && (
+          <Thumbnail style={styles.iconImage} source={{ uri: item.iconUrl }} />
+        )}
+        {!item.iconUrl && (
+          <Icon
+            style={styles.iconFallback}
+            type="MaterialCommunityIcons"
+            name="link-variant"
+          />
+        )}
       </Left>
       <Body>
-        <Text numberOfLines={1} ellipsizeMode="middle">
+        <Text style={styles.serviceName}>
+          {item.isValid
+            ? item.serviceName
+            : `(Disconnected) ${item.serviceName}`}
+        </Text>
+        <Text
+          style={
+            styles.serviceName
+          }>{`${item.userName} <${item.userEmail}>, ${item.userAccount}`}</Text>
+        <Text style={styles.serviceId} numberOfLines={1} ellipsizeMode="middle">
           {item.deviceId}
         </Text>
-        <Text note>{moment.unix(item.pairedAt).format('YYYY-MM-DD')}</Text>
+        <Text note style={styles.pairedAt}>
+          {moment.unix(item.pairedAt).format('YYYY-MM-DD')}
+        </Text>
       </Body>
       <Right>
         <Button
@@ -54,11 +79,25 @@ const PairingList: () => React$Node = ({
 };
 
 const styles = StyleSheet.create({
-  icon: {
+  iconImage: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
+  },
+  iconFallback: {
     fontSize: 24,
     width: 24,
     color: textColorDisabled,
   },
+  serviceName: {},
+  user: {
+    opacity: 0.75,
+  },
+  serviceId: {
+    fontSize: 14,
+    opacity: 0.5,
+  },
+  pairedAt: {},
   emptyContainer: {
     flex: 1,
     alignItems: 'center',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions, Platform, AppState } from 'react-native';
 import {
   Container,
   Content,
@@ -10,25 +10,39 @@ import {
   Title,
   Icon,
   Button,
+  Text,
 } from 'native-base';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
-import QRCodeScanner from 'react-native-qrcode-scanner';
-import { colorPrimary } from '../Constants';
+import {
+  ScanPairView,
+  PairImagePicker,
+  Authenticator,
+} from '@cybavo/react-native-auth-service';
+const { PairMode } = Authenticator;
+import { request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
+const { width, height } = Dimensions.get('window');
 const ScanScreen: () => React$Node = () => {
-  const [qrCode, setQrCode] = useState('');
+  const [pairResult, setPairResult] = useState({});
   const { goBack } = useNavigation();
+  const endpoint = useNavigationParam('endpoint');
+  const apiCode = useNavigationParam('apiCode');
+  const pushDeviceToken = useNavigationParam('pushDeviceToken');
   const onResult = useNavigationParam('onResult');
 
   useEffect(() => {
-    if (qrCode) {
-      if (onResult) {
-        onResult(qrCode);
-      }
-      goBack();
-    }
-  }, [goBack, onResult, qrCode]);
+    PairImagePicker.addListener('onPairResult', _onResult);
+    return () => {
+      PairImagePicker.removeListener('onPairResult', _onResult);
+    };
+  }, []);
 
+  const _onResult = result => {
+    goBack();
+    if (onResult) {
+      onResult(result.deviceId, result.errorMsg);
+    }
+  };
   return (
     <Container>
       <Header>
@@ -40,22 +54,40 @@ const ScanScreen: () => React$Node = () => {
         <Body>
           <Title>Scan</Title>
         </Body>
-        <Right />
+        <Right>
+          <Button
+            transparent
+            onPress={async () => {
+              if (Platform.OS != 'ios') {
+                let result = await request(
+                  PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
+                );
+                if (result != RESULTS.GRANTED) {
+                  return;
+                }
+              }
+              PairImagePicker.start(
+                endpoint,
+                apiCode,
+                pushDeviceToken,
+                PairMode.TOKEN
+              );
+            }}>
+            <Text>Pick</Text>
+          </Button>
+        </Right>
       </Header>
       <Content contentContainerStyle={styles.contentContainer}>
-        <QRCodeScanner
-          showMarker
-          checkAndroid6Permissions
-          cameraProps={{
-            style: {
-              width: '100%',
-              height: '100%',
-            },
+        <ScanPairView
+          width={width}
+          height={height}
+          endPoint={endpoint}
+          apiCode={apiCode}
+          pushDeviceToken={pushDeviceToken}
+          mode={PairMode.TOKEN}
+          onPairResult={(deviceId, errorMsg) => {
+            _onResult({ deviceId, errorMsg });
           }}
-          markerStyle={{
-            borderColor: colorPrimary,
-          }}
-          onRead={e => setQrCode(e.data)}
         />
       </Content>
     </Container>

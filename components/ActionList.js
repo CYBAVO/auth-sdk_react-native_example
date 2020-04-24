@@ -30,9 +30,11 @@ const bulletColor = userAction => {
 
 const PairingList: () => React$Node = ({
   actions: { actions, fetching },
+  pairings: { pairings = [] },
   onPressItem,
   onRefresh,
 }) => {
+  console.log(pairings);
   const _renderItem = ({ item }) => (
     <ListItem
       style={[
@@ -53,11 +55,16 @@ const PairingList: () => React$Node = ({
         <Text numberOfLines={1} ellipsizeMode="middle">
           {getTitle(item)}
         </Text>
+        <Text numberOfLines={1} style={styles.serviceName}>
+          {pairings.find(p => p.deviceId === item.deviceId).serviceName}
+        </Text>
         <Text
           note
           numberOfLines={1}
           ellipsizeMode="middle"
-          style={styles.deviceId}>{`${item.deviceId}`}</Text>
+          style={styles.deviceId}>
+          {item.deviceId}
+        </Text>
         <Text note style={styles.state}>
           {`${stateDesc(item)}/${userActionDesc(item)}`}
         </Text>
@@ -115,6 +122,9 @@ const styles = StyleSheet.create({
   bullet: {
     width: 4,
     height: 32,
+  },
+  serviceName: {
+    opacity: 0.75,
   },
   deviceId: {},
   state: {

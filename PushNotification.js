@@ -70,14 +70,14 @@ RNPushNotification.configure({
     if (!payload) {
       return;
     }
-    const body = PushNotification.parse(payload);
-    store.dispatch(newNotifications(body.actions));
+    const { devices, title, body } = PushNotification.parse(payload);
+    store.dispatch(newNotifications(devices));
 
     // show local notification
     RNPushNotification.localNotification({
       id: NOTIFICATION_ID,
-      title: 'TBD',
-      message: 'TBD',
+      title: title,
+      message: body,
     });
   },
 });

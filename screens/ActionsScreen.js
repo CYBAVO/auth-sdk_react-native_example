@@ -73,6 +73,7 @@ const ActionsScreen: () => React$Node = () => {
       {pairings.pairings.length > 0 && (
         <ActionList
           actions={actions}
+          pairings={pairings}
           onRefresh={() => setRefresh(true)}
           onPressItem={action => {
             navigate(
