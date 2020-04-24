@@ -588,9 +588,9 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cybavo/react-native-auth-service@^1.0.55":
-  version "1.0.55"
-  resolved "http://192.168.99.32:8081/repository/npm-debug/@cybavo/react-native-auth-service/-/react-native-auth-service-1.0.55.tgz#4ce3b5cda20a2870781a0d74687e118c874d93e7"
+"@cybavo/react-native-auth-service@^1.0.56":
+  version "1.0.64"
+  resolved "https://registry.yarnpkg.com/@cybavo/react-native-auth-service/-/react-native-auth-service-1.0.64.tgz#0d5cf74cd7899a9741fc0bcba37cb301276f74e2"
 
 "@hapi/address@2.x.x":
   version "2.1.4"
