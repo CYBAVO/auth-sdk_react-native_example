@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@cybavo/react-native-auth-service": "^1.0.56",
+    "@cybavo/react-native-auth-service": "^1.0.67",
     "@react-native-community/async-storage": "^1.7.0",
     "@react-native-community/push-notification-ios": "^1.0.3",
     "@react-native-firebase/app": "^6.2.0",
@@ -18,7 +18,7 @@
     "moment": "^2.24.0",
     "native-base": "^2.13.8",
     "react": "16.9.0",
-    "react-native": "0.61.4",
+    "react-native": "^0.63.3",
     "react-native-camera": "^3.11.1",
     "react-native-gesture-handler": "^1.5.1",
     "react-native-modal": "^11.5.3",
@@ -51,7 +51,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "jest": "^24.9.0",
-    "metro": "^0.57.0",
+    "metro": "^0.63.0",
     "metro-core": "^0.57.0",
     "metro-react-native-babel-preset": "^0.57.0",
     "prettier": "^1.19.1",
