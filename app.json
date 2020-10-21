@@ -1,4 +1,5 @@
 {
   "name": "CybavoAuthExample",
-  "displayName": "CYBAVO Auth Example"
+  "displayName": "CYBAVO Auth Example",
+  "resolutions": { "logkitty": "^0.7.1" }
 }
