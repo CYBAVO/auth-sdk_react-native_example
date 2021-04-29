@@ -16,6 +16,7 @@
     "@react-native-firebase/app": "^6.2.0",
     "@react-native-firebase/iid": "^6.2.0",
     "moment": "^2.24.0",
+    "y18n": "^4.0.1",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "^0.63.3",
