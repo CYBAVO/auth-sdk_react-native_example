@@ -1,4 +1,4 @@
-# CYBABO Auth SDK for React Native - Sample
+# CYBAVO Auth SDK for React Native - Sample
 
 Sample app for integrating Cybavo Authenticator SDK, https://www.cybavo.com/
 
