@@ -27,8 +27,19 @@ Sample app for integrating Cybavo Authenticator SDK, https://www.cybavo.com/
 
    - **iOS**
 
-   1. Edit `ios/Podfile`, Replace `'https://bitbucket.org/cybavo/Specs.git'` with `'https://bitbucket.org/cybavo/specs_501.git'` if using Xcode 10.2.1, Xcode 10.3, with `'https://bitbucket.org/cybavo/specs_512.git'` if using >= Xcode 11.2
-   2. Run `pod install` in `ios/`
+   1. Suggest using Xcode 14 and CocoaPods 1.9.3+. 
+   2. ⚠️ From `CYBAVOAuth 1.2.239`, please put following `post_install` hook in the Podfile.
+
+      ```sh
+      post_install do |installer|
+         installer.pods_project.targets.each do |target|
+            target.build_configurations.each do |config|
+               config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+            end
+         end
+      end
+      ```
+   3. Run `pod install` in `ios/`
 
 2. Edit `BuildConfig.json` ➜ `SERVICE_ENDPOINT` to point to your Wallet Service endpoont
 3. Register your app on CYBAVO AUTH MANAGEMENT system web > Service > App Management, input `package name` and `Signature keystore SHA1 fingerprint`, follow the instruction to retrieve an `API Code`.
